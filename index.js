@@ -22,20 +22,27 @@ const View = (() => {
   };
 
   const render = (ele, movlist) => {
-    ele.innerHTML = movlist;
+    console.log(movlist);
+    if(!document.getElementById('carousel1').classList.contains('scroll-right')) {
+      console.log('bear', typeof movlist)
+      let first = movlist.splice(0, 4)
+      ele.innerHTML = first;
+    } else {
+      ele.innerHTML = movlist;
+    }
   };
 
   const createCards = (arr) => {
     
-    let card = '';
+    let card = [];
     arr.forEach((movie) => {
-      card += `
+      card.push( `
       <div id=${movie.id} class="card">
         <img src=${movie.imgUrl} alt="movie poster">
         <h1 id=${movie.name}>${movie.name}</h1>
         <p id=${movie.outlineInfo}>${movie.outlineInfo}</p>
       </div>
-      `;
+      `);
     });
     return card;
   };
@@ -79,6 +86,16 @@ const Model = ((api, view) => {
 const Controller = ((model, view) => {
   const state = new model.State();
 
+  document.getElementById('left-arrow').addEventListener("click", (e) => {
+    document.getElementById('carousel1').setAttribute('class', 'scroll-left')
+  })
+  
+  document.getElementById('right-arrow').addEventListener("click", (e) => {
+    document.getElementById('carousel1').setAttribute('class', 'scroll-right')
+    console.log(state.movielist, state)
+    state.movielist = state.movielist
+  })
+
   const init = () => {
     model.getMovies().then((movies) => {
       state.movielist = [...movies];
@@ -97,13 +114,3 @@ Controller.bootstrap();
 const scrollLeft = () => {
   console.log()
 }
-
-document.getElementById('left-arrow').addEventListener("click", (e) => {
-  console.log(e.target)
-  document.getElementById('carousel1').setAttribute('class', 'scroll-left')
-})
-
-document.getElementById('right-arrow').addEventListener("click", (e) => {
-  console.log(e.target)
-  document.getElementById('carousel1').setAttribute('class', 'scroll-right')
-})
