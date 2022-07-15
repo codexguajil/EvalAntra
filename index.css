@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+#carousel {
+  display: inline-flex;
+  flex-flow: row ;
+  width: 80%;
+  height: 90%;
+  top: 15%;
+  left: 10%;
+  position: absolute;
+  overflow: scroll;
+}
+
+#carousel1 {
+  display: inline-flex;
+  flex-flow: row ;
+  width: 50%;
+  height: 90%;
+  top: 10%;
+  left: 4%;
+  justify-self: center;
+}
+
+.card {
+  margin: 10px;
+  position: relative;
+}
+
+img {
+  width: 250px;
+}
+
+#left-arrow {
+  font-size: 3em;
+  z-index: 1;
+  color: gray;
+  top: 35%;
+  position: absolute;
+  left: 4%;
+}
+
+#right-arrow {
+  font-size: 3em;
+  z-index: 1;
+  color: gray;
+  top: 35%;
+  position: absolute;
+  right: 4%;
+}
+
+.scroll-left {
+  transform: translateX(0px);
+  transition: 2s all ease;
+}
+
+.scroll-right {
+  transform: translateX(-1400px);
+  transition: 2s all ease;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.card h1 {
+  font-size: 1em;
+}
+
+.card p {
+  font-size: .7em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+span:hover {
+  cursor: pointer;
+}
