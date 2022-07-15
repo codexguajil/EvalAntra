@@ -24,11 +24,10 @@ const View = (() => {
   const render = (ele, movlist) => {
     console.log(movlist);
     if(!document.getElementById('carousel1').classList.contains('scroll-right')) {
-      console.log('bear', typeof movlist)
-      let first = movlist.splice(0, 4)
+      let first = movlist.splice(0, 4).join('')
       ele.innerHTML = first;
     } else {
-      ele.innerHTML = movlist;
+      ele.innerHTML = movlist.join('');
     }
   };
 
@@ -55,7 +54,6 @@ const View = (() => {
 })();
 
 const Model = ((api, view) => {
-  console.log('on')
 
   class State {
     #movies = [];
@@ -68,7 +66,6 @@ const Model = ((api, view) => {
       this.#movies = [...movies];
 
       const carousel = document.querySelector(view.strDom.carousel);
-      console.log(carousel);
       const cards = view.createCards(this.#movies);
       view.render(carousel, cards);
     }
@@ -92,7 +89,6 @@ const Controller = ((model, view) => {
   
   document.getElementById('right-arrow').addEventListener("click", (e) => {
     document.getElementById('carousel1').setAttribute('class', 'scroll-right')
-    console.log(state.movielist, state)
     state.movielist = state.movielist
   })
 
@@ -110,7 +106,3 @@ const Controller = ((model, view) => {
 })(Model, View);
 
 Controller.bootstrap();
-
-const scrollLeft = () => {
-  console.log()
-}
